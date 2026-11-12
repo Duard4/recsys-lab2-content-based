@@ -172,7 +172,7 @@ for g in SHOW:
     axes[1].plot(POOL_M, [nclu_pool[m][grp == g].mean() for m in POOL_M], "o-", color=GC[g], label=g)
 axes[0].set_ylabel("середній розмір пулу №4"); axes[1].set_ylabel("кластерів, представлених у пулі (середнє)")
 for ax in axes:
-    ax.set_xlabel("порогове значення M"); ax.set_xscale("log"); ax.set_xticks(POOL_M); ax.set_xticklabels(POOL_M)
+    ax.set_xlabel("порогове значення M"); ax.set_xscale("log"); ax.set_xticks(POOL_M); ax.set_xticklabels(POOL_M); ax.set_xticks([], minor=True)   # без проміжних міток 3×10¹, 4×10¹ … — лише значення M
 axes[0].legend(frameon=False, fontsize=8)
 fig.suptitle("Стратегія В: вплив порогового розміру пулу №4", fontsize=10.5, y=1.02)
 fig.tight_layout(); fig.savefig(FIG / "l2_strategyB_threshold.png", bbox_inches="tight"); plt.close(fig)
