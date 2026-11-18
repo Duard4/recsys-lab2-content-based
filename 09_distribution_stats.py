@@ -109,7 +109,7 @@ qual = pd.DataFrame(rows)
 qual.to_csv(RES / "stats_top10_quality.csv", index=False, encoding=ENC)
 
 # ---------------------------------------------------------------- ГРАФІКИ
-GC = {"активні": "#4C78A8", "звичайні": "#9D9D9D", "пасивні": "#F58518", "нові (0)": "#54A24B"}
+GC = {"активні": "#4C78A8", "пасивні": "#F58518", "нові (0)": "#54A24B"}
 SHOW = ["активні", "пасивні", "нові (0)"]       # групи, обов'язкові за завданням (звичайні — додатково, у таблицях)
 
 # 4.1 розміри пулів (лог-шкала)
@@ -162,7 +162,7 @@ for m in POOL_M:
 pd.DataFrame([dict(M=m, group=g, mean_pool_size=size_df[(size_df.pool == f"P4_{m}") & (size_df.group == g)]["mean"].iloc[0],
                    mean_clusters_in_pool=nclu_pool[m][grp == g].mean(),
                    mean_clusters_in_top10=qual[(qual.pool == f"P4_{m}") & (qual.group == g)]["mean_clusters_in_top10"].iloc[0],
-                   pool_recall=(ho[(ho.method == f"P4_{m}") & (ho.group == g)]["pool_recall"].iloc[0] if g in ("активні", "звичайні", "пасивні") else np.nan))
+                   pool_recall=(ho[(ho.method == f"P4_{m}") & (ho.group == g)]["pool_recall"].iloc[0] if g in ("активні", "пасивні") else np.nan))
            for m in POOL_M for g in GROUPS]).to_csv(RES / "stats_strategyB_threshold.csv", index=False, encoding=ENC)
 fig, axes = plt.subplots(1, 2, figsize=(8.5, 3.2))
 for g in SHOW:

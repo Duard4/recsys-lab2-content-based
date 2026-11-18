@@ -73,7 +73,7 @@ for nm in POOLS + ["POP", "RAND"]:
                              HR10=np.mean(a["hr"]), P10=np.mean(a["p"]), R10=np.mean(a["r"])))
 ho = pd.DataFrame(rows)
 ho.to_csv(RES / "stats_holdout.csv", index=False, encoding=ENC)
-print(ho.round(3).query("group in ['активні','пасивні','звичайні']").to_string())
+print(ho.round(3).query("group in ['активні','пасивні']").to_string())
 
 # ======================================================= (б) чутливість до кластеризації
 sens = []

@@ -55,7 +55,6 @@ rd["checks"] = dict(rec_rows=len(rec), rec_violations=int(bad), pool_violations=
 
 # --- приклади користувачів
 ex = json.load(open(RES / "example_users.json", encoding="utf-8"))
-ex["звичайні"] = u[u.activity_group == "звичайні"].sort_values("n_courses").iloc[(u.activity_group == "звичайні").sum() // 2]["user_id"]
 clu = dict(zip(c.course_id, cl))
 ttl = dict(zip(c.course_id, c.title))
 seeds = read("new_users_seed_courses.csv")

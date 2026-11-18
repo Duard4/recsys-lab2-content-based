@@ -3,12 +3,12 @@
 import matplotlib.pyplot as plt
 from cb_lib import *
 ho = pd.read_csv(RES / "stats_holdout.csv", encoding=ENC)
-GC = {"активні": "#4C78A8", "звичайні": "#9D9D9D", "пасивні": "#F58518"}
+GC = {"активні": "#4C78A8", "пасивні": "#F58518"}
 meths = ["P1", "P2", "P3", "P4_100", "P4_500", "POP", "RAND"]
 lab = ["П1", "П2", "П3", "П4\nM=100", "П4\nM=500", "Популяр-\nність", "Випадк."]
 fig, axes = plt.subplots(1, 2, figsize=(11.5, 3.6))
 w = 0.26
-for j, g in enumerate(["активні", "звичайні", "пасивні"]):
+for j, g in enumerate(["активні", "пасивні"]):
     d = ho[ho.group == g].set_index("method").loc[meths]
     x = np.arange(len(meths)) + (j - 1) * w
     axes[0].bar(x, d["pool_recall"], w, color=GC[g], label=g)
