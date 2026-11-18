@@ -23,7 +23,7 @@ function runs(text, base = {}) {
     push(text.slice(last, m.index));
     const tok = m[0];
     if (tok.startsWith("**")) push(tok.slice(2, -2), { bold: true });
-    else if (tok.startsWith("`")) push(tok.slice(1, -1), { font: "Courier New", size: (base.size || 24) - 2 });
+    else if (tok.startsWith("`")) push(tok.slice(1, -1), { font: "Courier New", size: (base.size || 28) - 2 });
     else push("[" + tok.slice(2, -2) + "]", { shading: { type: ShadingType.CLEAR, fill: "FFF2A8", color: "auto" } });
     last = m.index + tok.length;
   }
@@ -43,7 +43,7 @@ const P = (text, o = {}) =>
 
 const PN = (text, o = {}) => P(text, { indent: { firstLine: 0 }, ...o }); // без відступу першого рядка
 const Center = (text, o = {}) => P(text, { align: AlignmentType.CENTER, indent: { firstLine: 0 }, ...o });
-const H1 = (t, pb = true) => new Paragraph({ heading: HeadingLevel.HEADING_1, children: [new TextRun({ text: t, font: FONT })], pageBreakBefore: pb });
+const H1 = (t, pb = true) => new Paragraph({ heading: HeadingLevel.HEADING_1, children: [new TextRun({ text: t, font: FONT })], pageBreakBefore: pb, keepNext: true });
 const H2 = (t) => new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun({ text: t, font: FONT })], keepNext: true });
 const H3 = (t) => new Paragraph({ heading: HeadingLevel.HEADING_3, children: [new TextRun({ text: t, font: FONT })], keepNext: true });
 
@@ -70,7 +70,7 @@ const Caption = (text, kind) => {
   counters[kind] += 1;
   const label = kind === "fig" ? "Рисунок" : "Таблиця";
   return new Paragraph({
-    children: [new TextRun({ text: `${label} ${counters[kind]} — ${text}`, font: FONT, size: 22, italics: kind === "fig" })],
+    children: [new TextRun({ text: `${label} ${counters[kind]} – ${text}`, font: FONT, size: 28, italics: kind === "fig" })],
     alignment: kind === "fig" ? AlignmentType.CENTER : AlignmentType.LEFT,
     spacing: { before: kind === "fig" ? 60 : 160, after: kind === "fig" ? 200 : 60 },
     keepNext: kind === "tab",
@@ -144,7 +144,7 @@ function Tab(headers, rows, widths, o = {}) {
 const Gap = (n = 120) => new Paragraph({ children: [], spacing: { after: n } });
 const Break = () => new Paragraph({ children: [new PageBreak()] });
 
-// Лістинг коду: кожен рядок — окремий абзац (Courier New 6,5 pt)
+// Лістинг коду: кожен рядок – окремий абзац (Courier New 6,5 pt)
 function Code(file) {
   const src = fs.readFileSync(file, "utf-8").replace(/\t/g, "    ").split("\n");
   return src.map(
