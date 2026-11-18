@@ -29,7 +29,7 @@ push(
   Center("ІМЕНА ТАРАСА ШЕВЧЕНКА", { run: { bold: true, size: 28 }, after: 160 }),
   Center("ФАКУЛЬТЕТ ІНФОРМАЦІЙНИХ ТЕХНОЛОГІЙ", { run: { bold: true }, after: 60 }),
   Center("КАФЕДРА ІНТЕЛЕКТУАЛЬНИХ ТЕХНОЛОГІЙ", { run: { bold: true }, after: 1800 }),
-  Center("Лабораторна робота №2", { run: { bold: true, size: 36 }, after: 120 }),
+  Center("Лабораторна робота №2", { run: { bold: true, size: 28 }, after: 120 }),
   Center("з дисципліни «Рекомендаційні системи»", { run: { size: 28 }, after: 360 }),
   Center("Тема: «Побудова рекомендації на основі контентно-орієнтованих методів фільтрації»", { run: { size: 28 }, after: 240 }),
   Center("Варіант 1", { run: { size: 28, bold: true }, after: 1700 }),
@@ -48,7 +48,7 @@ push(
   Caption("Кластери курсів (метрика C1 з ЛР1)", "tab"),
   Tab(["Кластер", "Курсів", "Переважна категорія (частка)", "Характерні терміни", "Популярних / рідкісних / нових"],
     rd.clusters.map((c) => [String(c.cluster), String(c.size), `${c.top_category} (${pc(c.top_category_share)})`, c.top_terms, `${c.popular} / ${c.rare} / ${c.new}`]),
-    [800, 800, 3000, 3055, 1700], { size: 17, aligns: [A.CENTER, A.CENTER, A.LEFT, A.LEFT, A.CENTER] }),
+    [800, 800, 3000, 3055, 1700], { size: 19, aligns: [A.CENTER, A.CENTER, A.LEFT, A.LEFT, A.CENTER] }),
   Gap(),
   P(`Кластери добре відповідають тематичним областям каталогу: у дев'яти із десяти кластерів домінує одна категорія (76–98 %). Кластер 8 (${rd.clusters[8].size} курсів) – «змішаний»: у ньому зібрано курси з різних областей зі спільною лексикою (основи алгоритмів, коучинг, біотехнології), тому його частка домінантної категорії лише ${pc(rd.clusters[8].top_category_share)}.`)
 );
@@ -87,7 +87,7 @@ const poolRows = ["P1", "P2", "P3", ...POOLS_M.map((m) => `P4_${m}`)].map((nm) =
   ...[G.a, G.p, G.n].map((g) => `${n(sz(nm, g))} (${n(sz(nm, g, "min"))}–${n(sz(nm, g, "max"))})`),
 ]);
 push(
-  Tab(["Пул", `Активні (n=${gs["активні"]})`, `Пасивні (n=${gs["пасивні"]})`, `Нові (n=${gs["нові (0)"]})`], poolRows, [2800, 2185, 2185, 2185], { size: 17, aligns: [A.LEFT, A.CENTER, A.CENTER, A.CENTER] }),
+  Tab(["Пул", `Активні (n=${gs["активні"]})`, `Пасивні (n=${gs["пасивні"]})`, `Нові (n=${gs["нові (0)"]})`], poolRows, [2800, 2185, 2185, 2185], { size: 19, aligns: [A.LEFT, A.CENTER, A.CENTER, A.CENTER] }),
   Gap()
 );
 
@@ -133,7 +133,7 @@ const poolTitle = { P1: "Пул №1 (стратегія А: курси, схо�
   }
   rowsT.push(["Усього в пулі", ...[G.a, G.p, G.n].map((g) => `${f1(sz(nm, g))} (${n(sz(nm, g, "min"))}–${n(sz(nm, g, "max"))})`)]);
   push(Caption(`${poolTitle[nm]}: курсів кожного кластера в пулі, середнє (мін–макс)`, "tab"),
-    Tab(["Кластер (розмір)", `Активні (n=${gs["активні"]})`, `Пасивні (n=${gs["пасивні"]})`, `Нові (n=${gs["нові (0)"]})`], rowsT, [3355, 2000, 2000, 2000], { size: 17, aligns: [A.LEFT, A.CENTER, A.CENTER, A.CENTER] }),
+    Tab(["Кластер (розмір)", `Активні (n=${gs["активні"]})`, `Пасивні (n=${gs["пасивні"]})`, `Нові (n=${gs["нові (0)"]})`], rowsT, [3355, 2000, 2000, 2000], { size: 19, aligns: [A.LEFT, A.CENTER, A.CENTER, A.CENTER] }),
     Gap(80));
 });
 push(
@@ -144,7 +144,7 @@ const qrow = (nm, lab) => [lab, ...[G.a, G.p, G.n].flatMap((g) => [f2(Q[nm][g].m
 push(
   Caption("Різноманітність списків ТОП-10: кількість кластерів у списку, середнє (мін–макс), та внутрішньоспискова різноманітність ILD = 1 − середня схожість пар", "tab"),
   Tab(["Пул", "Активні: кластерів", "ILD", "Пасивні: кластерів", "ILD", "Нові: кластерів", "ILD"],
-    [qrow("P1", "№1 (А)"), qrow("P2", "№2 (А)"), qrow("P3", "№3 (Б)"), qrow("P4_100", "№4 (В)")], [1500, 1700, 900, 1700, 900, 1755, 900], { size: 17, aligns: [A.LEFT, A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER] }),
+    [qrow("P1", "№1 (А)"), qrow("P2", "№2 (А)"), qrow("P3", "№3 (Б)"), qrow("P4_100", "№4 (В)")], [1500, 1700, 900, 1700, 900, 1755, 900], { size: 19, aligns: [A.LEFT, A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER] }),
   Gap(),
   H2("6.3. Вплив порогового розміру пулу №4 (стратегія В)")
 );
@@ -156,7 +156,7 @@ push(
       [G.a, G.p, G.n].map((g) => n(thr(m, g, "mean_pool_size"))).join(" / "),
       [G.a, G.p, G.n].map((g) => f1(thr(m, g, "mean_clusters_in_pool"))).join(" / "),
       [G.a, G.p, G.n].map((g) => f1(thr(m, g, "mean_clusters_in_top10"))).join(" / ")]),
-    [700, 2900, 2900, 2855], { size: 17, aligns: [A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER] }),
+    [700, 2900, 2900, 2855], { size: 19, aligns: [A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER] }),
   Gap()
 );
 
@@ -171,7 +171,7 @@ push(
   Caption("Якість ТОП-10 на відкладеній вибірці (стратегія В – для M = 100; для інших M результат той самий)", "tab"),
   Tab(["Метод", "Акт. HR@10", "Акт. P@10", "Акт. R@10", "Пас. HR@10", "Пас. P@10", "Пас. R@10"],
     [hoRow("P1", "Пул №1 (А)"), hoRow("P2", "Пул №2 (А)"), hoRow("P3", "Пул №3 (Б)"), hoRow("P4_100", "Пул №4 (В)"), hoRow("POP", "Популярні (база)"), hoRow("RAND", "Випадкові (база)")],
-    [2455, 1150, 1150, 1150, 1150, 1150, 1150], { size: 17, aligns: [A.LEFT, A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER] }),
+    [2455, 1150, 1150, 1150, 1150, 1150, 1150], { size: 19, aligns: [A.LEFT, A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER, A.CENTER] }),
   Gap()
 );
 
@@ -200,7 +200,7 @@ const doc = new Document({
   styles: {
     default: { document: { run: { font: FONT, size: 28 } } },
     paragraphStyles: [
-      { id: "Heading1", name: "Heading 1", basedOn: "Normal", next: "Normal", quickFormat: true, run: { size: 32, bold: true, font: FONT, color: "000000" }, paragraph: { spacing: { before: 120, after: 200 }, outlineLevel: 0 } },
+      { id: "Heading1", name: "Heading 1", basedOn: "Normal", next: "Normal", quickFormat: true, run: { size: 28, bold: true, font: FONT, color: "000000" }, paragraph: { spacing: { before: 120, after: 200 }, outlineLevel: 0 } },
       { id: "Heading2", name: "Heading 2", basedOn: "Normal", next: "Normal", quickFormat: true, run: { size: 28, bold: true, font: FONT, color: "000000" }, paragraph: { spacing: { before: 280, after: 140 }, outlineLevel: 1 } },
       { id: "Heading3", name: "Heading 3", basedOn: "Normal", next: "Normal", quickFormat: true, run: { size: 28, bold: true, italics: true, font: FONT, color: "000000" }, paragraph: { spacing: { before: 240, after: 120 }, outlineLevel: 2 } },
     ],

@@ -23,7 +23,7 @@ function runs(text, base = {}) {
     push(text.slice(last, m.index));
     const tok = m[0];
     if (tok.startsWith("**")) push(tok.slice(2, -2), { bold: true });
-    else if (tok.startsWith("`")) push(tok.slice(1, -1), { font: "Courier New", size: (base.size || 28) - 2 });
+    else if (tok.startsWith("`")) push(tok.slice(1, -1), { font: "Courier New", size: base.size || 28 });
     else push("[" + tok.slice(2, -2) + "]", { shading: { type: ShadingType.CLEAR, fill: "FFF2A8", color: "auto" } });
     last = m.index + tok.length;
   }
